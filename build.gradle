@@ -17,8 +17,10 @@ import org.ajoberstar.grgit.Grgit
 
 buildscript {
   repositories {
-    mavenCentral()
-    jcenter()
+    maven { url 'https://maven.aliyun.com/repository/google/' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter/'}
+//    mavenCentral()
+//    jcenter()
   }
   apply from: file('gradle/buildscript.gradle'), to: buildscript
 
@@ -38,7 +40,9 @@ allprojects {
   apply plugin: "jacoco"
 
   repositories {
-    mavenCentral()
+    maven { url 'https://maven.aliyun.com/repository/google/' }
+    maven { url 'https://maven.aliyun.com/repository/jcenter/'}
+//    mavenCentral()
   }
 
   apply plugin: 'com.github.ben-manes.versions'
@@ -138,6 +142,8 @@ subprojects {
   apply plugin: 'signing'
   apply plugin: 'checkstyle'
   apply plugin: 'findbugs'
+
+  findbugsMain.enabled = false
 
   sourceCompatibility = 1.7
 
@@ -501,7 +507,7 @@ project(':core') {
   println "Building project 'core' with Scala version ${versions.scala}"
 
   apply plugin: 'scala'
-  apply plugin: "org.scoverage"
+//  apply plugin: "org.scoverage"
   archivesBaseName = "kafka_${versions.baseScala}"
 
   dependencies {
@@ -532,19 +538,19 @@ project(':core') {
     testCompile libs.scalaTest
     testCompile libs.jfreechart
 
-    scoverage libs.scoveragePlugin
-    scoverage libs.scoverageRuntime
+//    scoverage libs.scoveragePlugin
+//    scoverage libs.scoverageRuntime
   }
 
   jacocoTestReport.enabled = false
-  scoverage {
-    reportDir = file("${rootProject.buildDir}/scoverage")
-    highlighting = false
-  }
-  checkScoverage {
-    minimumRate = 0.0
-  }
-  checkScoverage.shouldRunAfter('test')
+//  scoverage {
+//    reportDir = file("${rootProject.buildDir}/scoverage")
+//    highlighting = false
+//  }
+//  checkScoverage {
+//    minimumRate = 0.0
+//  }
+//  checkScoverage.shouldRunAfter('test')
 
   configurations {
     // manually excludes some unnecessary dependencies
@@ -907,13 +913,13 @@ project(':streams:examples') {
 
 project(':jmh-benchmarks') {
 
-  apply plugin: 'com.github.johnrengelman.shadow'
+//  apply plugin: 'com.github.johnrengelman.shadow'
 
-  shadowJar {
-    baseName = 'kafka-jmh-benchmarks-all'
-    classifier = null
-    version = null
-  }
+//  shadowJar {
+//    baseName = 'kafka-jmh-benchmarks-all'
+//    classifier = null
+//    version = null
+//  }
 
   dependencies {
       compile project(':clients')
