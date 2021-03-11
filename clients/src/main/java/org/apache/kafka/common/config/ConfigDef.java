@@ -78,9 +78,9 @@ public class ConfigDef {
      */
     public static final Object NO_DEFAULT_VALUE = new Object();
 
-    private final Map<String, ConfigKey> configKeys;
-    private final List<String> groups;
-    private Set<String> configsWithNoParent;
+    private final Map<String, ConfigKey> configKeys; // 存储配置
+    private final List<String> groups; // 配置项分组
+    private Set<String> configsWithNoParent; // 继承配置
 
     public ConfigDef() {
         configKeys = new LinkedHashMap<>();
